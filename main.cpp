@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 	manager.clearScreen();
 	SDL_Color color = {255, 255, 255};
 	for(int i=0; i<20; ++i) {
-		manager.putPixel(Position(i, i), color);
+		manager.putPixel(Position2D<int>(i, i), color);
 	}
 	manager.wait(5000);
 }

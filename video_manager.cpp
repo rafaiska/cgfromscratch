@@ -7,14 +7,15 @@
 
 #include "video_manager.h"
 
-Position Position::operator+(Position p) {
-	return Position(this->getx() + p.getx(), this->gety() + p.gety());
+template <class T> Position2D<T> Position2D<T>::operator+(Position2D<T> p) {
+	return Position2D(this->x + p.x, this->y + p.y);
 }
 
 VideoManager::VideoManager(int width, int height) {
 	SDL_Init(SDL_INIT_VIDEO);
 	mainScreen = SDL_SetVideoMode(width, height, 32, 0);
-	newOrigin.set(width/2, height/2);
+	newOrigin.x = width/2;
+	newOrigin.y = height/2;
 }
 
 VideoManager::~VideoManager() {
@@ -32,16 +33,16 @@ void VideoManager::wait(int ms) {
 	SDL_Delay(5000);
 }
 
-void VideoManager::changeSurfacePixel(const Position& pos, const SDL_Color& color) {
+void VideoManager::changeSurfacePixel(const Position2D<int>& pos, const SDL_Color& color) {
 	Uint32 intcolor = getIntColor(color);
 	Uint32 * const target_pixel = (Uint32 *) ((Uint8 *) mainScreen->pixels
-	                                             + pos.gety() * mainScreen->pitch
-	                                             + pos.getx() * mainScreen->format->BytesPerPixel);
+	                                             + pos.y * mainScreen->pitch
+	                                             + pos.x * mainScreen->format->BytesPerPixel);
 	*target_pixel = intcolor;
 }
 
-void VideoManager::putPixel(const Position& pos, const SDL_Color& color) {
-	Position corrected = newOrigin + pos;
+void VideoManager::putPixel(const Position2D<int>& pos, const SDL_Color& color) {
+	Position2D<int> corrected = newOrigin + pos;
 	SDL_LockSurface(mainScreen);
 	changeSurfacePixel(corrected, color);
 	SDL_UnlockSurface(mainScreen);
