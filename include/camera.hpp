@@ -8,7 +8,7 @@
 #ifndef INCLUDE_CAMERA_HPP_
 #define INCLUDE_CAMERA_HPP_
 
-#include "video_manager.h"
+#include "video_manager.hpp"
 
 class Camera {
 	Position3D<float> origin;

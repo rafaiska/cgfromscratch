@@ -6,7 +6,7 @@
  */
 
 
-#include "video_manager.h"
+#include "video_manager.hpp"
 
 int main(int argc, char* argv[]) {
 	VideoManager manager(300, 300);

@@ -35,3 +35,12 @@
 .cproject
 .project
 .settings
+
+# SDL
+SDL-1.2.15
+
+# VSCode
+.vscode
+
+# CMake Build
+build

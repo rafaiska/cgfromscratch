@@ -5,7 +5,7 @@
  *      Author: rafael
  */
 
-#include "video_manager.h"
+#include "video_manager.hpp"
 
 template <class T> Position2D<T> Position2D<T>::operator+(Position2D<T> p) {
 	return Position2D(this->x + p.x, this->y + p.y);
